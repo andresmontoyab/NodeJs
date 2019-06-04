@@ -23,10 +23,14 @@
     * [Mocha.](#Mocha)
     * [Node Inspect.](#Node-Inspect)
 * [Streams.](#Streams)
+* [Deploying.](#Deploying)
+    * [Logging.](#Logging)
+    * [Config Management.](#Config-Management)
+    * [Publishing npm packages.](#Publishing-npm-packages.)
+* [Scaling.](#Scaling.)
+
     
-
-
-
+    
 
 
 # Concepts.
@@ -364,3 +368,64 @@ There are four fundamental stream types within NodeJs.
 6. TCP sockets.
 7. child process stdin
 8. process.stdin, process stderr 
+
+## Deploying
+
+## Logging
+
+1. Helps later on to debug issues with deployed code.
+2. Should provide log levels for filtering purpose.
+3. Buyan logs in json format: easy log parsing.
+
+        npm install --save bunyan
+
+Also you should to create the bunyan and log object.
+
+        const bunyan = require('bunyan');
+        const log = bunyan.createLogger({name: 'logger'});
+
+        log.info({ port: 1000});
+
+## Config Management
+
+Helps to support different deployment environment.
+
+Should be configurable:
+
+1. Ports.
+2. Database connections details.
+3. Secrets (Encryption keys, etc.)
+4. Performance tweaking.
+
+        npm install --save node-config-manager
+
+You should define in your config folder JSON with the information that you need in your application, also is very important to notice that depends of the environment the files are going to be override.
+
+With this file you can set up different properties for dev, qa, prod.
+
+## Publishing npm packages.
+
+Creating a user:
+
+        npm adduser.
+
+Updating the package:
+
+        npm version <patcj | minor | major>
+
+Publishing the package:
+
+        npm publish.
+
+## Scaling
+
+Node.js is single threaded by default, this CPU intensive task wont scale well. Once your scaling issues get CPU bound, new threads or processes needs to be spawned in order to continue scaling.
+
+Solutions
+
+1. Cluster Module: The core module cluster can launch worker threads which can deal with request to the server. Even though for simple tasks this might be enough. this module hasn't proven reliable in production. To see this approach review the JS file cluster.js
+
+2. Docker: The best way to use all the cores available is to dockerize your application and externalize the processing.
+
+To see the second approach you must to create a dockerfile inside the folder you want to deploy.
+

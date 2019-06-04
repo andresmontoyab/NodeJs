@@ -1,0 +1,10 @@
+version: '3'
+services:
+  userinfo:
+    build: ./userInfo
+    ports:
+    - "3001:3001"
+  stadistics:
+    build: ./stadistics
+    ports:
+    - "3002:3001"

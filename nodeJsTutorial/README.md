@@ -6,6 +6,7 @@
     * [Require Tools](#Require-Tools)
         * [node](#node)
         * [npm](#npm)
+    * [Modules](#Modules)
     * [Callbacks](#Callbacks)
     * [Asyncs.js](#Asyncs.js)
     * [Promises](#Promises)
@@ -73,7 +74,10 @@ The next list of tools are require to work with nodejs.
 
 ## Node.js
 
-Is the basis tool that we need.
+1. Is not a programming language.
+2. Node is an application container, that executed JS code.
+3. Is built with a JS interpeter called v8, that is in Google chrome.
+4. NodeJs is executed in one single thread in an asynchronous way.
 
 ## Npm
 
@@ -82,6 +86,63 @@ Node Package Managers.
 Is a global public package repository for Node.js 
 
 Dependency management: each package has its own independent dependency tree. This avoid version conflicts between different packages.
+
+1. With the following command we can see all the dependencies in the application.
+
+        npm list.
+
+2. To delete one dependency of the application you can use the next command
+
+        npm uninstall <dependency_name> --save
+
+3. The dependecies could be install global or local, globan means that all my application can use this dependency:
+
+        npm install -g node-inspector
+
+4. List all the dependencies install with global level.
+
+        npm -g list --depth=1
+
+## Modules        
+
+All the node ecosystem is based in modules.
+
+There are three types of modules.
+
+1. Core -> The modules system
+
+2. Community -> The modules created by the community that you can import with npm
+
+3. Own -> The modules that you create in order to build your app.
+
+To export our own modules we can use the next syntax.
+
+        // in a file call modulo.js
+        module.exports = "hola mundo";
+
+from another module I can use the previous create module.
+
+        var modulo = require('./modulo');
+        console.log(modulo)
+
+In javascript i can also export functions.
+
+        function destacar(mensaje) {
+            console.log(mensaje)
+        };
+
+        module.export = destacar;
+
+Import function
+
+        var module = require('./modulo');
+        module("hola");
+
+Another way to export module is the next:
+
+        exports.destacar = destacar;
+
+One important thing to highlight here is that in your application you can not use both exports way, your code must be consistent and only use one of both.
 
 ## Callbacks
 

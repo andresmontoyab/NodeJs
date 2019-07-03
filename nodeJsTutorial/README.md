@@ -13,8 +13,6 @@
     * [Middleware](#Middleware)
 * [Require-Interfacing](#Require-Interfacing)
 * [Http](#Http)
-* [Express](#Express)
-    * [Routing.](#Routing.)
 * [Storing](#Storing)
     * [Redis.](#Redis.)
 * [Event.](#Event.)
@@ -29,6 +27,8 @@
     * [Config Management.](#Config-Management)
     * [Publishing npm packages.](#Publishing-npm-packages.)
 * [Scaling.](#Scaling.)
+* [Database](#Database)
+        * [Mongo](#Mongo)
 
     
     
@@ -281,29 +281,6 @@ Contains all information to be send to the client. It implements the writeable s
         .end(data) send data in body
         .statusCode defines HTTP status code.
 
-## Express
-
-Is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications, is open source software and is too easy to use.
-
-It extends the http interface and provides a router and the ability to register middlewares.
-
-        npm install express --save
-
-To see an exmaple of Express application see the file express-basic.
-
-## Routing.
-
-Refers to determining how application responds to a client request to a particular endpoint, which is a URI( or path) and a specific Http request method (GET, POST, and so on).
-
-Each route can have one or more handler functions, which are executed when the route is matched.
-
-        const express = require('express');
-        const app = express();
-
-        app.get('/polls', controller.getAll);
-        app.post('polls', controller.create);
-        app.delete('polls', controller.delete);
-        app.get('/polls/:id', controller.get);
 
 ## Storing
 
@@ -490,3 +467,25 @@ Solutions
 
 To see the second approach you must to create a dockerfile inside the folder you want to deploy.
 
+# Database
+
+## Mongo
+
+To use mongo db with node.js we need a driver, this driver was developed by the mongo team and its name is node-mongodb-native.
+
+Install
+
+           npm install --save mongodb     
+
+Basic connection
+
+                const MongoClient = require('mongodb').MongoClient;
+                const url = 'mongodb://localhost:27017/test';
+
+                MongoClient.connect(url, function(err,base) {
+                        if(err) {
+                        console.log(err);
+                        return;
+                }
+                        var usuarios = base.collection('usuarios');
+                })

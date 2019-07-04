@@ -8,6 +8,7 @@
     * [View.](#View.)  
         *[Handlebars](#Handlebars)
     * [Middleware.](#Middleware.)  
+        * [Body-parser.](#Body-parser.)  
 
 
 ## Express
@@ -101,3 +102,17 @@ Also we can chain a lot of middleware.
                 }        
 
                 app.use(logMiddleware);
+
+## Body-parser  
+
+Body parser is one of the most used it middlewares in express, body parser help us to translate de body from request to json in javascript.
+
+Installation
+
+                npm install --save body-parser
+
+Use it.
+
+                app.use(bodyParser.json());
+
+The last line help to translate the request to json format.

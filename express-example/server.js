@@ -8,6 +8,8 @@ app.use(logMiddleware);
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
+var usuarios = express.Router();
+
 function logMiddleware(req,res,next) {
     console.log(req.url);
     next();

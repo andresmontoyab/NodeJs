@@ -527,4 +527,20 @@ app.get('/user/:id', function(req, res){
 
 The controllers are the action that need to be execute when a specific route is requested and in base of MVC pattern the controllers must be separate of the route and model layers.
 
+## Body-parser  
 
+Body parser is one of the most used it middlewares in express, body parser help us to translate de body from request to json in javascript.
+
+Installation
+
+```sh
+npm install --save body-parser
+```
+
+Use it.
+
+```js
+app.use(bodyParser.json());
+```
+
+The last line help to translate the request to json format.
